@@ -16,10 +16,12 @@ class Solution
     ];
 
     protected $status;
+    protected $variables;
 
     public function __construct($stat_code, $variables)
     {
         $this->parseStatus($stat_code);
+        $this->variables = $variables;
     }
 
 
@@ -35,5 +37,10 @@ class Solution
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function getVariables()
+    {
+        return $this->variables;
     }
 }
