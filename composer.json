@@ -1,0 +1,23 @@
+{
+    "name": "tchannel/lp-solver",
+    "description": "",
+    "authors": [
+        {
+            "name": "Tim Channell",
+            "email": "tim.channell@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tchannel\\LpSolver\\": "src"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpspec/phpspec": "~2.1"
+    }
+}

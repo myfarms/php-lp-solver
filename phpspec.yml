@@ -1,0 +1,5 @@
+suites:
+    lpsolver:
+        namespace: Tchannel\LpSolver
+        spec_path: ./
+        src_path: ./src
