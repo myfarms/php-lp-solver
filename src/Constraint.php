@@ -1,5 +1,6 @@
 <?php namespace Tchannel\LpSolver;
 
+use Illuminate\Support\Collection;
 use Exception;
 
 class Constraint
@@ -48,5 +49,36 @@ class Constraint
     public function getRhs()
     {
         return $this->rhs;
+    }
+
+    public function setRhs($rhs)
+    {
+        $this->rhs = $rhs;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getFor()
+    {
+        return $this->for;
+    }
+
+    public function setOwner(Collection $owner)
+    {
+        $this->owner = $owner;
+    }
+
+    public function remove()
+    {
+        if ($this->owner) {
+            $key = $this->owner->search($this);
+            if (!is_null($key)) {
+                $this->owner->forget($key);
+            }
+            return $this->owner;
+        }
     }
 }

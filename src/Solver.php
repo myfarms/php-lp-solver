@@ -1,13 +1,17 @@
 <?php namespace Tchannel\LpSolver;
 
+use Illuminate\Support\Collection;
+
 class Solver
 {
     protected $type;
-    protected $constraints = [];
+    protected $constraints;
     protected $objective;
 
     public function __construct(Objective $objective = null)
     {
+        $this->constraints = new Collection;
+
         if (!$objective) {
             $this->objective = new Objective;
         } else {
@@ -23,8 +27,16 @@ class Solver
 
     public function addConstraint(Constraint $constraint)
     {
-        $this->constraints[] = $constraint;
+        $this->constraints->push($constraint);
+        $constraint->setOwner($this->constraints);
         return $this;
+    }
+
+    public function getConstraintsByName($name)
+    {
+        return $this->constraints->filter(function ($elem) use ($name) {
+            return $elem->getName() == $name;
+        });
     }
 
     public function addCoefficient(Coefficient $coeff)

@@ -18,6 +18,7 @@
     },
     "minimum-stability": "stable",
     "require-dev": {
-        "phpspec/phpspec": "~2.1"
+        "phpspec/phpspec": "~2.1",
+        "bossa/phpspec2-expect": "~1.0"
     }
 }

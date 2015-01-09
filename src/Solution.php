@@ -17,6 +17,7 @@ class Solution
 
     protected $status;
     protected $variables;
+    protected $code;
 
     public function __construct($stat_code, $variables)
     {
@@ -27,11 +28,11 @@ class Solution
 
     protected function parseStatus($stat)
     {
-        if (!isset($this->statuses[$stat])) {
+        if (!isset($this->statuses[(string) $stat])) {
             throw new Exception("Unknow solver status code: {$stat}");
         }
-
-        $this->status = $this->statuses[$stat];
+        $this->code = $stat;
+        $this->status = $this->statuses[(string) $stat];
     }
 
     public function getStatus()
@@ -42,5 +43,10 @@ class Solution
     public function getVariables()
     {
         return $this->variables;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
     }
 }
