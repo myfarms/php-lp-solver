@@ -5,14 +5,20 @@ use Exception;
 class Solution
 {
     protected $statuses = [
-        "-2" => "TIMEOUT",
-        "-3" => "USERABORT",
+        "-2" => "NOMEMORY",
         "0" => "OPTIMAL",
-        "1" => "MILP_FAIL",
+        "1" => "SUBOPTIMAL",
         "2" => "INFEASIBLE",
         "3" => "UNBOUNDED",
-        "4" => "FAILURE",
-        "8" => "BREAK_BB",
+        "4" => "DEGENERATE",
+        "5" => "NUMFAILURE",
+        "6" => "USERABORT",
+        "7" => "TIMEOUT",
+        "9" => "PRESOLVED",
+        "10" => "PROCFAIL",
+        "11" => "PROCBREAK",
+        "12" => "FEASFOUND",
+        "13" => "NOFEASFOUND"
     ];
 
     protected $status;
@@ -29,7 +35,7 @@ class Solution
     protected function parseStatus($stat)
     {
         if (!isset($this->statuses[(string) $stat])) {
-            throw new Exception("Unknow solver status code: {$stat}");
+            throw new Exception("Unknown solver status code: {$stat}");
         }
         $this->code = $stat;
         $this->status = $this->statuses[(string) $stat];
