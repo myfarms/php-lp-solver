@@ -68,7 +68,9 @@ class Solver
         lpsolve('set_int', $lp, $this->objective->asIntSettings());
         lpsolve($this->objective->getType(), $lp);
 
+        ob_start();
         $stat = lpsolve('solve', $lp);
+        ob_end_clean();
 
         return new Solution($stat, lpsolve('get_variables', $lp));
         #dd([$stat, lpsolve('get_variables', $lp)]);
